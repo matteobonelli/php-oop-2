@@ -2,6 +2,27 @@
     height: 200px;
 }
 
+body {
+    background-color: #1b2838;
+}
+
+header {
+    background-color: #171d25 !important;
+}
+
+
+.container-logo img {
+    width: 70px;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
 
 .flag {
     width: 25px;

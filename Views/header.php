@@ -18,11 +18,25 @@
 </head>
 
 <body>
-    <header class='container'>
-        <h1>OOP - Shop</h1>
-        <ul>
-            <li><a href="index.php">film</a></li>
-            <li><a href="books.php">libri</a></li>
-            <li><a href="games.php">giochi</a></li>
-        </ul>
+    <header class="mb-4 ">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <div class="container-logo me-3">
+                    <img src="img/steam_logo.png" alt="Steam Logo">
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav fw-bold">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.php">Film</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="books.php">Libri</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="games.php">Videogames</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>

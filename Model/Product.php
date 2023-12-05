@@ -16,7 +16,7 @@ class Product
     {
         if ($title == 'Gunfight at Rio Bravo' || $title == 'Unlocking Android' || str_contains($title, 'Half-Life')) {
             $this->sconto = 20;
-            return $this->sconto;
+            return $this->sconto . "$";
         } else {
             return $this->sconto;
         }

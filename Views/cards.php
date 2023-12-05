@@ -38,6 +38,7 @@
             <div class='fw-bold mt-3'>
                 Quantità:
                 <?= $quantity . "<br>" ?>
+                Prezzo:
                 <?= $price ?> $ <br>
                 <?php if ($sconto > 0) { ?>
                     <div>Sconto:
