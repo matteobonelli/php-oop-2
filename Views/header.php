@@ -23,5 +23,6 @@
         <ul>
             <li><a href="index.php">film</a></li>
             <li><a href="books.php">libri</a></li>
+            <li><a href="games.php">giochi</a></li>
         </ul>
     </header>

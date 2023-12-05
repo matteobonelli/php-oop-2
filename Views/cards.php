@@ -5,31 +5,37 @@
             <h5 class="card-title">
                 <?= $title ?>
             </h5>
-            <p class="card-text overflow-y-auto">
-                <?= $descr ?>
-            </p>
-            <div>
-                <?= $printGenre ?>
-            </div>
-            <?php if (isset($authors)) { ?>
-                <?= $authors ?>
-            <?php }
-            if (isset($flag)) { ?>
-                <div class="d-flex justify-content-between ">
-                    <div>
-                        <div class="flag">
-                            <img src="img/<?= $flag ?>" alt="<?= $lang ?>">
-                        </div>
-                        <small>
-                            <?= $release ?>
-                        </small>
-                    </div>
-                    <div class="text-warning">
-                        <?= $vote ?>
-                    </div>
+            <?php if (isset($playtime)) { ?>
+                <div class='text-success fw-bold'>
+                    <?= "Ore di gioco: " . $playtime ?>
                 </div>
-            <?php } ?>
-            <div>
+            <?php } else { ?>
+                <p class="card-text overflow-y-auto">
+                    <?= $descr ?>
+                </p>
+                <div>
+                    <?= $printGenre ?>
+                </div>
+                <?php if (isset($authors)) { ?>
+                    <?= $authors ?>
+                <?php }
+                if (isset($flag)) { ?>
+                    <div class="d-flex justify-content-between ">
+                        <div>
+                            <div class="flag">
+                                <img src="img/<?= $flag ?>" alt="<?= $lang ?>">
+                            </div>
+                            <small>
+                                <?= $release ?>
+                            </small>
+                        </div>
+                        <div class="text-warning">
+                            <?= $vote ?>
+                        </div>
+                    </div>
+                <?php }
+            } ?>
+            <div class='fw-bold mt-3'>
                 Quantità:
                 <?= $quantity . "<br>" ?>
                 <?= $price ?> $ <br>
