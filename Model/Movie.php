@@ -49,6 +49,15 @@ class Movie extends Product
         return $genreArray;
     }
 
+    private function getGenreString()
+    {
+        $genreStrings = [];
+        foreach ($this->getGenres() as $genre) {
+            $genreStrings[] = $genre->genre;
+        }
+        return $genreStrings;
+    }
+
     private function printGenres()
     {
         $template = "<h5>";

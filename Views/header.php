@@ -21,10 +21,11 @@
     <header class="mb-4 ">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <div class="container-logo me-3">
+                <div class="container-logo me-3 d-flex align-items-center">
                     <img src="img/steam_logo.png" alt="Steam Logo">
+                    <h1 class="text-light px-3">OOP - Shop</h1>
                 </div>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div>
                     <ul class="navbar-nav fw-bold">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="index.php">Film</a>
