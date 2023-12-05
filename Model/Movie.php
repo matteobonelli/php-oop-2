@@ -39,7 +39,6 @@ class Movie extends Product
 
     private function getGenres()
     {
-
         $genreArray = [];
         while (count($genreArray) < 2) {
             $randGenre = $this->genres[rand(0, count($this->genres) - 1)];
@@ -47,8 +46,13 @@ class Movie extends Product
                 array_push($genreArray, $randGenre);
             }
         }
+        return $genreArray;
+    }
+
+    private function printGenres()
+    {
         $template = "<h5>";
-        foreach ($genreArray as $genre) {
+        foreach ($this->getGenres() as $genre) {
             $template .= $genre->drawGenre() . "<br>";
         }
         $template .= "</h5>";
@@ -77,7 +81,7 @@ class Movie extends Product
         $flag = $this->getFlags();
         $lang = $this->original_language;
         $release = $this->release_date;
-        $printGenre = $this->getGenres();
+        $printGenre = $this->printGenres();
         $price = $this->price;
         $quantity = $this->quantity;
 
@@ -91,9 +95,9 @@ class Movie extends Product
         $movieList = json_decode($getContent, true);
         $moviesDecoded = [];
         $genres = Genre::fetchAll();
-        $quantity = rand(0, 100);
-        $price = rand(5, 200);
         foreach ($movieList as $movie) {
+            $quantity = rand(0, 100);
+            $price = rand(5, 50);
             $moviesDecoded[] = new Movie($movie['id'], $movie['title'], $movie['original_language'], $movie['overview'], $movie['vote_average'], $movie['poster_path'], $movie['release_date'], $genres, $quantity, $price);
         }
         return $moviesDecoded;

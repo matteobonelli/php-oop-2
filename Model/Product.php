@@ -14,7 +14,7 @@ class Product
 
     public function setDiscount($title)
     {
-        if ($title == 'Gunfight at Rio Bravo') {
+        if ($title == 'Gunfight at Rio Bravo' || $title == 'Unlocking Android') {
             $this->sconto = 20;
             return $this->sconto;
         } else {
