@@ -12,14 +12,18 @@ class Product {
 
     }
 
-    public function setDiscount($title) {
-        if($title == 'Gunfight at Rio Bravo' || str_contains($title, 'Android') || str_contains($title, 'Half-Life')) {
-            $this->sconto = 20;
-            return $this->sconto."$";
+    public function setDiscount(int $discount) {
+        if($discount > 90 || $discount < 10) {
+            throw new Exception('Discount out of range');
         } else {
-            // throw new Exception('La tua percentuale è out of range');
-            return $this->sconto;
+            $this->sconto = $discount;
         }
+
+
+    }
+
+    public function getDiscount() {
+        return $this->sconto;
     }
 }
 

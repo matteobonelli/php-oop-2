@@ -5,6 +5,11 @@
             <h5 class="card-title">
                 <?= $title ?>
             </h5>
+            <?php if(isset($error) && $error) { ?>
+                <div class="alert alert-danger">
+                    <?= $error ?>
+                </div>
+            <?php } ?>
             <?php if(isset($playtime)) { ?>
                 <div class='text-success fw-bold'>
                     <?= "Ore di gioco: ".$playtime ?>

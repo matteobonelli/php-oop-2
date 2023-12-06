@@ -23,13 +23,23 @@ class Game extends Product {
     }
 
     public function getGames() {
+
+        if(ceil($this->quantity < 10)) {
+            try {
+                $this->setDiscount(10);
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
+        }
+
         $gamesItem = [
+            'error' => $error ?? '',
             'title' => $this->name,
             'image' => $this->getImage(),
             'playtime' => $this->printPlaytime(),
             'quantity' => $this->quantity,
             'price' => $this->price,
-            'sconto' => $this->setDiscount($this->name)
+            'sconto' => $this->getDiscount()
         ];
         return $gamesItem;
     }

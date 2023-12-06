@@ -71,23 +71,28 @@ class Movie extends Product {
     }
 
 
+
+
+
+
     public function getCard() {
 
-        // if(ceil($this->vote_average) < 7) {
-        //     try {
-        //         $this->setDiscount(10);
-        //     } catch (Exception $e) {
-        //         $error = 'Eccezione'.$e->getMessage();
-        //     }
-        // }
+        if(ceil($this->vote_average < 7)) {
+            try {
+                $this->setDiscount(10);
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
+        }
 
         $cardItem = [
+            'error' => $error ?? '',
             'image' => $this->poster_path,
             'title' => $this->title,
             'descr' => $this->overview,
             'price' => $this->price,
             'quantity' => $this->quantity,
-            'sconto' => $this->setDiscount($this->title),
+            'sconto' => $this->getDiscount(),
             'id' => $this->id,
             'vote' => $this->getVote(),
             'flag' => $this->getFlags(),
@@ -98,9 +103,6 @@ class Movie extends Product {
         ];
 
         return $cardItem;
-
-
-        // $error = $error ?? '';
 
 
     }

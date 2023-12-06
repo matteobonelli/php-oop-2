@@ -38,7 +38,16 @@ class Book extends Product {
 
     public function getBooks() {
 
+        if(ceil($this->price > 30)) {
+            try {
+                $this->setDiscount(10);
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
+        }
+
         $bookItem = [
+            'error' => $error ?? '',
             'title' => $this->title,
             'image' => $this->thumbnailUrl,
             'descr' => $this->longDescription,
@@ -46,7 +55,7 @@ class Book extends Product {
             'price' => $this->price,
             'quantity' => $this->quantity,
             'authors' => $this->getAuthors(),
-            'sconto' => $this->setDiscount($this->title)
+            'sconto' => $this->getDiscount()
         ];
         return $bookItem;
     }
