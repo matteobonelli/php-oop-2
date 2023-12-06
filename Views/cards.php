@@ -5,9 +5,9 @@
             <h5 class="card-title">
                 <?= $title ?>
             </h5>
-            <?php if (isset($playtime)) { ?>
+            <?php if(isset($playtime)) { ?>
                 <div class='text-success fw-bold'>
-                    <?= "Ore di gioco: " . $playtime ?>
+                    <?= "Ore di gioco: ".$playtime ?>
                 </div>
             <?php } else { ?>
                 <p class="card-text overflow-y-auto">
@@ -16,10 +16,10 @@
                 <div>
                     <?= $printGenre ?>
                 </div>
-                <?php if (isset($authors)) { ?>
+                <?php if(isset($authors)) { ?>
                     <?= $authors ?>
                 <?php }
-                if (isset($flag)) { ?>
+                if(isset($flag)) { ?>
                     <div class="d-flex justify-content-between ">
                         <div>
                             <div class="flag">
@@ -37,10 +37,10 @@
             } ?>
             <div class='fw-bold mt-3'>
                 Quantità:
-                <?= $quantity . "<br>" ?>
+                <?= $quantity."<br>" ?>
                 Prezzo:
                 <?= $price ?> $ <br>
-                <?php if ($sconto > 0) { ?>
+                <?php if($sconto > 0) { ?>
                     <div>Sconto:
                         <?= $sconto ?>
                     </div>

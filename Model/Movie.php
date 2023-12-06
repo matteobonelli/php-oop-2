@@ -1,8 +1,7 @@
 <?php
-include __DIR__ . '/Genres.php';
-include __DIR__ . '/Product.php';
-class Movie extends Product
-{
+include __DIR__.'/Genres.php';
+include __DIR__.'/Product.php';
+class Movie extends Product {
     private int $id;
     private string $title;
     private string $original_language;
@@ -13,8 +12,7 @@ class Movie extends Product
     private array $genres;
 
 
-    public function __construct($id, $name, $lang, $descr, $vote, $image, $release, $genres, $quantity, $price)
-    {
+    public function __construct($id, $name, $lang, $descr, $vote, $image, $release, $genres, $quantity, $price) {
         parent::__construct($price, $quantity);
         $this->id = $id;
         $this->title = $name;
@@ -26,85 +24,93 @@ class Movie extends Product
         $this->genres = $genres;
     }
 
-    private function getVote()
-    {
+    private function getVote() {
         $vote = ceil($this->vote_average / 2);
         $template = "<p>";
-        for ($i = 0; $i < 5; $i++) {
+        for($i = 0; $i < 5; $i++) {
             $template .= $i <= $vote ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>';
         }
         $template .= "</p>";
         return $template;
     }
 
-    private function getGenres()
-    {
+    private function getGenres() {
         $genreArray = [];
-        while (count($genreArray) < 2) {
+        while(count($genreArray) < 2) {
             $randGenre = $this->genres[rand(0, count($this->genres) - 1)];
-            if (!in_array($randGenre, $genreArray)) {
+            if(!in_array($randGenre, $genreArray)) {
                 array_push($genreArray, $randGenre);
             }
         }
         return $genreArray;
     }
 
-    private function getGenreString()
-    {
+    private function getGenreString() {
         $genreStrings = [];
-        foreach ($this->getGenres() as $genre) {
+        foreach($this->getGenres() as $genre) {
             $genreStrings[] = $genre->genre;
         }
         return $genreStrings;
     }
 
-    private function printGenres()
-    {
+    private function printGenres() {
         $template = "<h5>";
-        foreach ($this->getGenres() as $genre) {
-            $template .= $genre->drawGenre() . "<br>";
+        foreach($this->getGenres() as $genre) {
+            $template .= $genre->drawGenre()."<br>";
         }
         $template .= "</h5>";
         return $template;
     }
 
-    private function getFlags()
-    {
+    private function getFlags() {
         $acceptedLanguages = ['de', 'es', 'en', 'fr', 'it', 'ja'];
-        if (!in_array($this->original_language, $acceptedLanguages)) {
+        if(!in_array($this->original_language, $acceptedLanguages)) {
             return "question.png";
         }
-        return $this->original_language . ".png";
+        return $this->original_language.".png";
     }
 
 
-    public function printCard()
-    {
+    public function getCard() {
 
-        $sconto = $this->setDiscount($this->title);
-        $title = $this->title;
-        $id = $this->id;
-        $image = $this->poster_path;
-        $descr = $this->overview;
-        $vote = $this->getVote();
-        $flag = $this->getFlags();
-        $lang = $this->original_language;
-        $release = $this->release_date;
-        $printGenre = $this->printGenres();
-        $price = $this->price;
-        $quantity = $this->quantity;
+        // if(ceil($this->vote_average) < 7) {
+        //     try {
+        //         $this->setDiscount(10);
+        //     } catch (Exception $e) {
+        //         $error = 'Eccezione'.$e->getMessage();
+        //     }
+        // }
 
-        include __DIR__ . '/../Views/cards.php';
+        $cardItem = [
+            'image' => $this->poster_path,
+            'title' => $this->title,
+            'descr' => $this->overview,
+            'price' => $this->price,
+            'quantity' => $this->quantity,
+            'sconto' => $this->setDiscount($this->title),
+            'id' => $this->id,
+            'vote' => $this->getVote(),
+            'flag' => $this->getFlags(),
+            'lang' => $this->original_language,
+            'release' => $this->release_date,
+            'printGenre' => $this->printGenres()
+
+        ];
+
+        return $cardItem;
+
+
+        // $error = $error ?? '';
+
 
     }
 
-    public static function fetchAll()
-    {
-        $getContent = file_get_contents(__DIR__ . '/movie_db.json');
+    public static function fetchAll() {
+        $getContent = file_get_contents(__DIR__.'/movie_db.json');
         $movieList = json_decode($getContent, true);
         $moviesDecoded = [];
         $genres = Genre::fetchAll();
-        foreach ($movieList as $movie) {
+        foreach($movieList as $movie) {
             $quantity = rand(0, 100);
             $price = rand(5, 50);
             $moviesDecoded[] = new Movie($movie['id'], $movie['title'], $movie['original_language'], $movie['overview'], $movie['vote_average'], $movie['poster_path'], $movie['release_date'], $genres, $quantity, $price);
